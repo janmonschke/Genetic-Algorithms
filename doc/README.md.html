@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>CoffeeScript API Documentation</title>
+  <link rel='stylesheet' href='assets/codo.css' type='text/css'>
+  <script src='assets/codo.js'></script>
+  <script src='assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path=''></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='class_index.html' title='Index'>Index</a>
+    &raquo;
+    <span class='title'>README.md</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='class_list.html'>Classes</a>
+      <a id='file_list_link' href='file_list.html'>Files</a>
+      <a id='method_list_link' href='method_list.html'>Methods</a>
+      <a id='extra_list_link' href='extra_list.html'>Extras</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-E</span>
+        Extras list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <nav class='toc'>
+        <p class='title'>
+          <a class='hide_toc' href='#'>
+            <strong>Table of Contents</strong>
+          </a>
+          <small>
+            (<a class='float_toc' href='#'>left</a>)
+          </small>
+        </p>
+      </nav>
+      <div id='filecontents'>
+        <h1>Brunch with Chaplin</h1><p><img src="https://a248.e.akamai.net/camo.github.com/b7ebb8bbcec7938940cf8e9c441124c3bddafd3a/687474703a2f2f662e636c2e6c792f6974656d732f34373039326b30423141334a317a3166306b34362f6277632e706e67" alt=""></p><p>Brunch with Chaplin is a skeleton (boilerplate) for <a href="http://brunch.io">Brunch</a>based on <a href="https://github.com/chaplinjs/chaplin">Chaplin</a> framework.</p><p>Requires Brunch 1.4+.</p><h2>Getting started</h2><ul><li>Create new project via executing <code>brunch new &lt;project name&gt;</code>.<br />Brunch with chaplin is a default application skeleton for Brunch,<br />so you don&#39;t need to specify <code>--skeleton</code> option for the command.</li><li>Build the project with <code>brunch b</code> or <code>brunch w</code>.</li><li>Open the <code>public/</code> dir to see the result.</li><li>Write your code.</li></ul><p>Example application built with the skeleton:<a href="https://github.com/paulmillr/ostio">Ost.io</a>.</p><p>See <a href="https://github.com/chaplinjs/chaplin">Chaplin github page</a> for<br />documentation.</p><h2>Difference from Chaplin Boilerplate</h2><p><a href="https://github.com/chaplinjs/chaplin-boilerplate">Chaplin Boilerplate</a>is a official boilerplate all for chaplin. This skeleton is almost the same,<br />except a few changes:</p><ul><li>Added Header.</li><li>Added authentication abstractions (<code>SessionController</code>, <code>LoginView</code> etc).</li><li>CommonJS is used instead of AMD, because it&#39;s easier to use &amp; debug.</li></ul><h2>Features</h2><ul><li>HTML5Boilerplate 4.0.0 html &amp; css are included.</li><li>CoffeeScript + Stylus + Handlebars as app languages<br />(you can change this to anything you want)</li><li>Backbone as main framework</li><li>Supports IE6 and up.</li><li>Cross-module communication using the Mediator and Publish/Subscribe patterns</li><li>Controllers for managing individual UI views</li><li>Rails-style routes which map URLs to controller actions</li><li>An application view as dispatcher and view manager</li><li>Extended model, view and collection classes to avoid repetition and<br />enforce conventions</li><li>Strict memory management and object disposal</li><li>A collection with additional manipulation methods for smarter change events</li><li>A collection view for easy and intelligent list rendering</li><li>Client-side authentication using service providers like Facebook, Google<br />and Twitter</li></ul><h2>License</h2><p>The MIT license.</p><p>Copyright (c) 2012 Paul Miller (<a href="http://paulmillr.com/">http://paulmillr.com/</a>)</p><p>Copyright (c) 2012 Moviepilot GmbH, 9elements GmbH et al.</p><p>Permission is hereby granted, free of charge, to any person obtaining a copy of<br />this software and associated documentation files (the &quot;Software&quot;), to deal in<br />the Software without restriction, including without limitation the rights to<br />use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies<br />of the Software, and to permit persons to whom the Software is furnished to do<br />so, subject to the following conditions:</p><p>The above copyright notice and this permission notice shall be included in all<br />copies or substantial portions of the Software.</p><p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br />IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br />FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE<br />AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br />LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,<br />OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE<br />SOFTWARE.</p>
+      </div>
+    </div>
+    <div id='footer'>
+  Generated on
+  Mon Sep 10 2012 10:05:28 GMT+0200 (CEST)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v1.4.1
+  (Node.js v0.6.19).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>
