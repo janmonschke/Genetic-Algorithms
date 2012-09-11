@@ -118,19 +118,71 @@
 </div>
 <div class='tags'>
 </div>
-      <h2>Direct Known Subclasses</h2>
-      <p class='children'>
-        <a href='../classes/TSAPopulation.html'>TSAPopulation</a>
-      </p>
       <h2>Property Summary</h2>
       <dl class='properties'>
+        <dt id='mutationChance-property'>
+          <span class='signature'>
+            (Float) <strong>mutationChance</strong>
+          </span>
+        </dt>
+        <dd class='desc'>
+          <p>The chance of a Genome to mutate</p>
+        </dd>
+        <dt id='crossoverRate-property'>
+          <span class='signature'>
+            (Float) <strong>crossoverRate</strong>
+          </span>
+        </dt>
+        <dd class='desc'>
+          <p>The rate of genes being crossovered</p>
+        </dd>
+        <dt id='elitism-property'>
+          <span class='signature'>
+            (Boolean) <strong>elitism</strong>
+          </span>
+        </dt>
+        <dd class='desc'>
+          <p>If true, the two best Genomes will survive without mutation or mating</p>
+        </dd>
+        <dt id='mixingRatio-property'>
+          <span class='signature'>
+            (Float) <strong>mixingRatio</strong>
+          </span>
+        </dt>
+        <dd class='desc'>
+          <p>Determines the amount of values to be copied from parents</p>
+        </dd>
         <dt id='genomes-property'>
           <span class='signature'>
             (Array&lt;Genome&gt;) <strong>genomes</strong>
           </span>
         </dt>
         <dd class='desc'>
-          <p>genomes All the genomes of this population</p>
+          <p>All the genomes of this population</p>
+        </dd>
+        <dt id='currentGeneration-property'>
+          <span class='signature'>
+            (Integer) <strong>currentGeneration</strong>
+          </span>
+        </dt>
+        <dd class='desc'>
+          <p>The number of the current genereation</p>
+        </dd>
+        <dt id='tournamentParticipants-property'>
+          <span class='signature'>
+            (Integer) <strong>tournamentParticipants</strong>
+          </span>
+        </dt>
+        <dd class='desc'>
+          <p>The number of participants for the tournament selection</p>
+        </dd>
+        <dt id='tournamentChance-property'>
+          <span class='signature'>
+            (Float) <strong>tournamentChance</strong>
+          </span>
+        </dt>
+        <dd class='desc'>
+          <p>The chance of having a tournament selection</p>
         </dd>
       </dl>
       <h2>Instance Method Summary</h2>
@@ -138,7 +190,7 @@
   <li>
     <span class='signature'>
       <a href='#constructor-instance'>
-        - (void) <strong>constructor</strong>(populationSize = 100, maxGenerationCount = 100000)
+        - (void) <strong>constructor</strong>(populationSize = 1000, maxGenerationCount = 100000)
       </a>
     </span>
     <span class='constructor note title'>Constructor</span>
@@ -158,6 +210,36 @@
   </li>
   <li>
     <span class='signature'>
+      <a href='#best-instance'>
+        - (void) <strong>best</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#worst-instance'>
+        - (void) <strong>worst</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#tournamentSelect-instance'>
+        - (void) <strong>tournamentSelect</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
       <a href='#nextGeneration-instance'>
         - (void) <strong>nextGeneration</strong>()
       </a>
@@ -171,7 +253,7 @@
       <div class='methods'>
   <div class='method_details'>
     <p class='signature' id='constructor-instance'>
-      - (void) <strong>constructor</strong>(populationSize = 100, maxGenerationCount = 100000)
+      - (void) <strong>constructor</strong>(populationSize = 1000, maxGenerationCount = 100000)
     </p>
     <div class='tags'>
   <h3>Parameters:</h3>
@@ -209,6 +291,27 @@
 </div>
   </div>
   <div class='method_details'>
+    <p class='signature' id='best-instance'>
+      - (void) <strong>best</strong>()
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='worst-instance'>
+      - (void) <strong>worst</strong>()
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='tournamentSelect-instance'>
+      - (void) <strong>tournamentSelect</strong>()
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
     <p class='signature' id='nextGeneration-instance'>
       - (void) <strong>nextGeneration</strong>()
     </p>
@@ -222,7 +325,7 @@
     </div>
     <div id='footer'>
   Generated on
-  Mon Sep 10 2012 10:05:28 GMT+0200 (CEST)
+  Wed Sep 12 2012 01:11:35 GMT+0200 (CEST)
   by
   <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
   v1.4.1

@@ -118,10 +118,6 @@
 </div>
 <div class='tags'>
 </div>
-      <h2>Direct Known Subclasses</h2>
-      <p class='children'>
-        <a href='../classes/TSAGenome.html'>TSAGenome</a>
-      </p>
       <h2>Property Summary</h2>
       <dl class='properties'>
         <dt id='values-property'>
@@ -159,7 +155,7 @@
   <li>
     <span class='signature'>
       <a href='#initial-instance'>
-        - (void) <strong>initial</strong>()
+        - (Array) <strong>initial</strong>()
       </a>
     </span>
     <span class='desc'>
@@ -173,17 +169,17 @@
       </a>
     </span>
     <span class='desc'>
-      Mutate this genome
+      Mutate this genome by swapping two random variables
     </span>
   </li>
   <li>
     <span class='signature'>
-      <a href='#mate-instance'>
-        - (Genome) <strong>mate</strong>(genome)
+      <a href='#crossover-instance'>
+        - (Array&lt;Genome&gt;) <strong>crossover</strong>(genome, mixingRatio)
       </a>
     </span>
     <span class='desc'>
-      Mate this genome with the the given genome
+      Perform a uniform crossover with the given genome
     </span>
   </li>
   <li>
@@ -194,6 +190,26 @@
     </span>
     <span class='desc'>
       The cost function is used to compare genomes.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#isValid-instance'>
+        - (Boolean) <strong>isValid</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Checks if the Genome contains all cities
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#getRandomIndex-instance'>
+        - (void) <strong>getRandomIndex</strong>(array)
+      </a>
+    </span>
+    <span class='desc'>
+      Helper function which returns a random index from the given array
     </span>
   </li>
 </ul>
@@ -244,12 +260,17 @@
   </div>
   <div class='method_details'>
     <p class='signature' id='initial-instance'>
-      - (void) <strong>initial</strong>()
+      - (Array) <strong>initial</strong>()
     </p>
     <div class='docstring'>
   <p>Creates the initial set of values</p>
 </div>
 <div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt>Array</tt></li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
@@ -257,17 +278,17 @@
       - (void) <strong>mutate</strong>()
     </p>
     <div class='docstring'>
-  <p>Mutate this genome</p>
+  <p>Mutate this genome by swapping two random variables</p>
 </div>
 <div class='tags'>
 </div>
   </div>
   <div class='method_details'>
-    <p class='signature' id='mate-instance'>
-      - (Genome) <strong>mate</strong>(genome)
+    <p class='signature' id='crossover-instance'>
+      - (Array&lt;Genome&gt;) <strong>crossover</strong>(genome, mixingRatio)
     </p>
     <div class='docstring'>
-  <p>Mate this genome with the the given genome</p>
+  <p>Perform a uniform crossover with the given genome</p>
 </div>
 <div class='tags'>
   <h3>Parameters:</h3>
@@ -277,17 +298,23 @@
       <span class='type'>
         (<tt><a href='../classes/Genome.html'>Genome</a></tt>)
       </span>
+    </li>
+    <li>
+      <span class='name'>mixingRatio</span>
+      <span class='type'>
+        (<tt>Float</tt>)
+      </span>
       &mdash;
-      <span class='desc'>to mate with</span>
+      <span class='desc'>How much should get mixed?</span>
     </li>
   </ul>
   <h3>Returns:</h3>
   <ul class='return'>
     <li>
       <span class='type'></span>
-      (<tt><a href='../classes/Genome.html'>Genome</a></tt>)
+      (<tt>Array&lt;<a href='../classes/Genome.html'>Genome</a>&gt;</tt>)
       &mdash;
-      <span class='desc'>the resulting Genome</span>
+      <span class='desc'>the two new Genomes</span>
     </li>
   </ul>
 </div>
@@ -297,7 +324,7 @@
       - (Integer) <strong>cost</strong>()
     </p>
     <div class='docstring'>
-  <p>The cost function is used to compare genomes. The cost is described as a measure of how optimal a<br />Genome is. Sometimes this function also called <code>fitness</code> function.</p>
+  <p>The cost function is used to compare genomes. The cost is described as a measure of how optimal a<br />Genome is. Sometimes this function also called <code>fitness</code> function.</p><p>In this case, the cost is the sum of the length of all routes for this genome.</p>
 </div>
 <div class='tags'>
   <h3>Returns:</h3>
@@ -311,11 +338,36 @@
   </ul>
 </div>
   </div>
+  <div class='method_details'>
+    <p class='signature' id='isValid-instance'>
+      - (Boolean) <strong>isValid</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Checks if the Genome contains all cities</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span><tt>Boolean</tt></li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='getRandomIndex-instance'>
+      - (void) <strong>getRandomIndex</strong>(array)
+    </p>
+    <div class='docstring'>
+  <p>Helper function which returns a random index from the given array</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
 </div>
     </div>
     <div id='footer'>
   Generated on
-  Mon Sep 10 2012 10:05:28 GMT+0200 (CEST)
+  Wed Sep 12 2012 01:11:35 GMT+0200 (CEST)
   by
   <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
   v1.4.1

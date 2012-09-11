@@ -6,8 +6,8 @@ class Population
   # @property [Float] The chance of a Genome to mutate
   mutationChance: .1
 
-  # @property [Float] The chance of a crossover
-  crossoverChance: .8
+  # @property [Float] The rate of genes being crossovered
+  crossoverRate: .45
 
   # @property [Boolean] If true, the two best Genomes will survive without mutation or mating
   elitism: true
@@ -15,18 +15,22 @@ class Population
   # @property [Float] Determines the amount of values to be copied from parents
   mixingRatio: .7
 
-  # 
-  genomeType: Genome
-
   # @property [Array<Genome>] All the genomes of this population
   genomes: []
 
+  # @property [Integer] The number of the current genereation
   currentGeneration: 1
+
+  # @property [Integer] The number of participants for the tournament selection
+  tournamentParticipants: 3
+
+  # @property [Float] The chance of having a tournament selection
+  tournamentChance: .1
 
   # @param [Integer] populationSize The size of the population
   # @param [Integer] maxGenerationCount The maximum number of generations (iterations)
   constructor: (@populationSize = 1000, @maxGenerationCount = 100000) ->
-    @genomes.push new @genomeType() for i in [0...@populationSize]
+    @genomes.push new Genome() for i in [0...@populationSize]
     @rank()
 
   # Ranks all genomes according to their cost (lower is better)
@@ -39,6 +43,14 @@ class Population
   worst: ->
     _.last(@genomes)
 
+  tournamentSelect: ->
+    participants = []
+    for index in [0..@tournamentParticipants]
+      randomIndex = Math.floor @genomes.length * Math.random()
+      participants.push @genomes[randomIndex]
+    participants = _.sortBy participants, (genome) -> genome.cost()
+    participants[0]
+
   # Creates the next generation
   nextGeneration: ->
     nextGeneration = []
@@ -47,24 +59,33 @@ class Population
     
     # the fittest two survive
     if @elitism
-      nextGeneration.push new @genomeType @genomes[0].values
-      nextGeneration.push new @genomeType @genomes[1].values
+      nextGeneration.push new Genome @genomes[0].values
+      nextGeneration.push new Genome @genomes[1].values
       skip = 2
 
     for index in [0...@genomes.length-skip] by 2
+      # simply select two solutions that are next to each other
       a = @genomes[index]
-      b = @genomes[index+1]
+      b = @genomes[index + 1]
 
-      if Math.random() <= @crossoverChance
+      # perform a crossover if the maximum hasn't been reached
+      if index / @populationSize <= @crossoverRate
         children = a.crossover b, @mixingRatio
-        nextGeneration.push children[0]
-        nextGeneration.push children[1]
+        a = children[0]
+        b = children[1]
       else
-        a.mutate() if Math.random() < @mutationChance
-        b.mutate() if Math.random() < @mutationChance
+        # Perform a tournament selection to have some spread
+        if Math.random() < @tournamentChance
+          a = @tournamentSelect()
+          b = @tournamentSelect()
 
-        nextGeneration.push new @genomeType a.values
-        nextGeneration.push new @genomeType b.values
+      # mutate the genomes
+      a.mutate() if Math.random() < @mutationChance
+      b.mutate() if Math.random() < @mutationChance
+
+      # add the new genomes to the next generation
+      nextGeneration.push a
+      nextGeneration.push b
 
     @genomes = nextGeneration
     

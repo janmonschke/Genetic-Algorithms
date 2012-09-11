@@ -81,7 +81,7 @@ window.require.define({"application": function(exports, require, module) {
 }});
 
 window.require.define({"genome": function(exports, require, module) {
-  var Genome;
+  var Genome, distances;
 
   Genome = (function() {
 
@@ -105,141 +105,6 @@ window.require.define({"genome": function(exports, require, module) {
     };
 
     Genome.prototype.initial = function() {
-      return [];
-    };
-
-    Genome.prototype.mutate = function() {};
-
-    Genome.prototype.crossover = function(genome) {
-      return [this, genome];
-    };
-
-    Genome.prototype.cost = function() {
-      return 1;
-    };
-
-    return Genome;
-
-  })();
-
-  exports.Genome = Genome;
-  
-}});
-
-window.require.define({"initialize": function(exports, require, module) {
-  var TSAPopulation;
-
-  TSAPopulation = require('tsapopulation').TSAPopulation;
-
-  window.population = new TSAPopulation();
-  
-}});
-
-window.require.define({"population": function(exports, require, module) {
-  var Genome, Population;
-
-  Genome = require('genome').Genome;
-
-  Population = (function() {
-
-    Population.prototype.mutationChance = .1;
-
-    Population.prototype.crossoverChance = .8;
-
-    Population.prototype.elitism = true;
-
-    Population.prototype.mixingRatio = .7;
-
-    Population.prototype.genomeType = Genome;
-
-    Population.prototype.genomes = [];
-
-    Population.prototype.currentGeneration = 1;
-
-    function Population(populationSize, maxGenerationCount) {
-      var i, _i, _ref;
-      this.populationSize = populationSize != null ? populationSize : 1000;
-      this.maxGenerationCount = maxGenerationCount != null ? maxGenerationCount : 100000;
-      for (i = _i = 0, _ref = this.populationSize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-        this.genomes.push(new this.genomeType());
-      }
-      this.rank();
-    }
-
-    Population.prototype.rank = function() {
-      return this.genomes = _.sortBy(this.genomes, function(genome) {
-        return genome.cost();
-      });
-    };
-
-    Population.prototype.best = function() {
-      return _.first(this.genomes);
-    };
-
-    Population.prototype.worst = function() {
-      return _.last(this.genomes);
-    };
-
-    Population.prototype.nextGeneration = function() {
-      var a, b, children, index, nextGeneration, skip, _i, _ref;
-      nextGeneration = [];
-      skip = 0;
-      this.currentGeneration++;
-      if (this.elitism) {
-        nextGeneration.push(new this.genomeType(this.genomes[0].values));
-        nextGeneration.push(new this.genomeType(this.genomes[1].values));
-        skip = 2;
-      }
-      for (index = _i = 0, _ref = this.genomes.length - skip; _i < _ref; index = _i += 2) {
-        a = this.genomes[index];
-        b = this.genomes[index + 1];
-        if (Math.random() <= this.crossoverChance) {
-          children = a.crossover(b, this.mixingRatio);
-          nextGeneration.push(children[0]);
-          nextGeneration.push(children[1]);
-        } else {
-          if (Math.random() < this.mutationChance) {
-            a.mutate();
-          }
-          if (Math.random() < this.mutationChance) {
-            b.mutate();
-          }
-          nextGeneration.push(new this.genomeType(a.values));
-          nextGeneration.push(new this.genomeType(b.values));
-        }
-      }
-      this.genomes = nextGeneration;
-      return this.rank();
-    };
-
-    return Population;
-
-  })();
-
-  exports.Population = Population;
-  
-}});
-
-window.require.define({"tsagenome": function(exports, require, module) {
-  var Genome, TSAGenome, distances,
-    __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
-
-  Genome = require('genome').Genome;
-
-  TSAGenome = (function(_super) {
-
-    __extends(TSAGenome, _super);
-
-    function TSAGenome() {
-      return TSAGenome.__super__.constructor.apply(this, arguments);
-    }
-
-    TSAGenome.prototype.getRandomIndex = function(array) {
-      return Math.floor(array.length * Math.random());
-    };
-
-    TSAGenome.prototype.initial = function() {
       var length, possibleCities, randomIndex, values;
       possibleCities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
       length = possibleCities.length;
@@ -256,7 +121,7 @@ window.require.define({"tsagenome": function(exports, require, module) {
       return values;
     };
 
-    TSAGenome.prototype.mutate = function() {
+    Genome.prototype.mutate = function() {
       var buff, indexA, indexB;
       indexA = this.getRandomIndex(this.values);
       indexB = this.getRandomIndex(this.values);
@@ -265,12 +130,12 @@ window.require.define({"tsagenome": function(exports, require, module) {
       return this.values[indexB] = buff;
     };
 
-    TSAGenome.prototype.crossover = function(genome, mixingRatio) {
+    Genome.prototype.crossover = function(genome, mixingRatio) {
       var amount, child1, child2, counter, cpP1, cpP2, index, index2, randomIndex, taken, _i, _j, _k, _ref, _ref1, _ref2;
       cpP1 = _.clone(this.values);
       cpP2 = _.clone(genome.values);
-      child1 = new TSAGenome([-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]);
-      child2 = new TSAGenome([]);
+      child1 = new Genome([-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]);
+      child2 = new Genome([]);
       taken = 0;
       amount = this.values.length;
       while ((taken / amount) < mixingRatio) {
@@ -305,7 +170,7 @@ window.require.define({"tsagenome": function(exports, require, module) {
       return [child1, child2];
     };
 
-    TSAGenome.prototype.cost = function() {
+    Genome.prototype.cost = function() {
       var city, cost, index, _i, _len, _ref;
       cost = 0;
       _ref = this.values;
@@ -320,7 +185,7 @@ window.require.define({"tsagenome": function(exports, require, module) {
       return cost;
     };
 
-    TSAGenome.prototype.isValid = function() {
+    Genome.prototype.isValid = function() {
       var city, _i;
       for (city = _i = 0; _i <= 14; city = ++_i) {
         if (_.indexOf(this.values, city) === -1) {
@@ -330,40 +195,130 @@ window.require.define({"tsagenome": function(exports, require, module) {
       return true;
     };
 
-    return TSAGenome;
+    Genome.prototype.getRandomIndex = function(array) {
+      return Math.floor(array.length * Math.random());
+    };
 
-  })(Genome);
+    return Genome;
 
-  exports.TSAGenome = TSAGenome;
+  })();
 
   distances = [[0, 5, 5, 6, 7, 2, 5, 2, 1, 5, 5, 1, 2, 7, 5], [5, 0, 5, 5, 5, 2, 5, 1, 5, 6, 6, 6, 6, 1, 7], [5, 5, 0, 6, 1, 6, 5, 5, 1, 6, 5, 7, 1, 5, 6], [6, 5, 6, 0, 5, 2, 1, 6, 5, 6, 2, 1, 2, 1, 5], [7, 5, 1, 5, 0, 7, 1, 1, 2, 1, 5, 6, 2, 2, 5], [2, 2, 6, 2, 7, 0, 5, 5, 6, 5, 2, 5, 1, 2, 5], [5, 5, 5, 1, 1, 5, 0, 2, 6, 1, 5, 7, 5, 1, 6], [2, 1, 5, 6, 1, 5, 2, 0, 7, 6, 2, 1, 1, 5, 2], [1, 5, 1, 5, 2, 6, 6, 7, 0, 5, 5, 5, 1, 6, 6], [5, 6, 6, 6, 1, 5, 1, 6, 5, 0, 7, 1, 2, 5, 2], [5, 6, 5, 2, 5, 2, 5, 2, 5, 7, 0, 2, 1, 2, 1], [1, 6, 7, 1, 6, 5, 7, 1, 5, 1, 2, 0, 5, 6, 5], [2, 6, 1, 2, 2, 1, 5, 1, 1, 2, 1, 5, 0, 7, 6], [7, 1, 5, 1, 2, 2, 1, 5, 6, 5, 2, 6, 7, 0, 5], [5, 7, 6, 5, 5, 5, 6, 2, 6, 2, 1, 5, 6, 5, 0]];
+
+  exports.Genome = Genome;
   
 }});
 
-window.require.define({"tsapopulation": function(exports, require, module) {
-  var Population, TSAGenome, TSAPopulation,
-    __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+window.require.define({"initialize": function(exports, require, module) {
+  var Population;
 
   Population = require('population').Population;
 
-  TSAGenome = require('tsagenome').TSAGenome;
+  window.population = new Population();
+  
+}});
 
-  TSAPopulation = (function(_super) {
+window.require.define({"population": function(exports, require, module) {
+  var Genome, Population;
 
-    __extends(TSAPopulation, _super);
+  Genome = require('genome').Genome;
 
-    function TSAPopulation() {
-      return TSAPopulation.__super__.constructor.apply(this, arguments);
+  Population = (function() {
+
+    Population.prototype.mutationChance = .1;
+
+    Population.prototype.crossoverRate = .45;
+
+    Population.prototype.elitism = true;
+
+    Population.prototype.mixingRatio = .7;
+
+    Population.prototype.genomes = [];
+
+    Population.prototype.currentGeneration = 1;
+
+    Population.prototype.tournamentParticipants = 3;
+
+    Population.prototype.tournamentChance = .1;
+
+    function Population(populationSize, maxGenerationCount) {
+      var i, _i, _ref;
+      this.populationSize = populationSize != null ? populationSize : 1000;
+      this.maxGenerationCount = maxGenerationCount != null ? maxGenerationCount : 100000;
+      for (i = _i = 0, _ref = this.populationSize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        this.genomes.push(new Genome());
+      }
+      this.rank();
     }
 
-    TSAPopulation.prototype.genomeType = TSAGenome;
+    Population.prototype.rank = function() {
+      return this.genomes = _.sortBy(this.genomes, function(genome) {
+        return genome.cost();
+      });
+    };
 
-    return TSAPopulation;
+    Population.prototype.best = function() {
+      return _.first(this.genomes);
+    };
 
-  })(Population);
+    Population.prototype.worst = function() {
+      return _.last(this.genomes);
+    };
 
-  exports.TSAPopulation = TSAPopulation;
+    Population.prototype.tournamentSelect = function() {
+      var index, participants, randomIndex, _i, _ref;
+      participants = [];
+      for (index = _i = 0, _ref = this.tournamentParticipants; 0 <= _ref ? _i <= _ref : _i >= _ref; index = 0 <= _ref ? ++_i : --_i) {
+        randomIndex = Math.floor(this.genomes.length * Math.random());
+        participants.push(this.genomes[randomIndex]);
+      }
+      participants = _.sortBy(participants, function(genome) {
+        return genome.cost();
+      });
+      return participants[0];
+    };
+
+    Population.prototype.nextGeneration = function() {
+      var a, b, children, index, nextGeneration, skip, _i, _ref;
+      nextGeneration = [];
+      skip = 0;
+      this.currentGeneration++;
+      if (this.elitism) {
+        nextGeneration.push(new Genome(this.genomes[0].values));
+        nextGeneration.push(new Genome(this.genomes[1].values));
+        skip = 2;
+      }
+      for (index = _i = 0, _ref = this.genomes.length - skip; _i < _ref; index = _i += 2) {
+        a = this.genomes[index];
+        b = this.genomes[index + 1];
+        if (index / this.populationSize <= this.crossoverRate) {
+          children = a.crossover(b, this.mixingRatio);
+          a = children[0];
+          b = children[1];
+        } else {
+          if (Math.random() < this.tournamentChance) {
+            a = this.tournamentSelect();
+            b = this.tournamentSelect();
+          }
+        }
+        if (Math.random() < this.mutationChance) {
+          a.mutate();
+        }
+        if (Math.random() < this.mutationChance) {
+          b.mutate();
+        }
+        nextGeneration.push(a);
+        nextGeneration.push(b);
+      }
+      this.genomes = nextGeneration;
+      return this.rank();
+    };
+
+    return Population;
+
+  })();
+
+  exports.Population = Population;
   
 }});
 

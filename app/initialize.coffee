@@ -1,3 +1,3 @@
-{TSAPopulation} = require 'tsapopulation'
+{Population} = require 'population'
 
-window.population = new TSAPopulation()
+window.population = new Population()
