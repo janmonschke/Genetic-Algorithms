@@ -225,13 +225,13 @@ window.require.define({"population": function(exports, require, module) {
 
   Population = (function() {
 
-    Population.prototype.mutationChance = .1;
+    Population.prototype.mutationChance = .15;
 
     Population.prototype.crossoverRate = .45;
 
     Population.prototype.elitism = true;
 
-    Population.prototype.mixingRatio = .7;
+    Population.prototype.mixingRatio = .8;
 
     Population.prototype.genomes = [];
 

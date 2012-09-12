@@ -4,7 +4,7 @@
 class Population
 
   # @property [Float] The chance of a Genome to mutate
-  mutationChance: .1
+  mutationChance: .15
 
   # @property [Float] The rate of genes being crossovered
   crossoverRate: .45
@@ -13,7 +13,7 @@ class Population
   elitism: true
 
   # @property [Float] Determines the amount of values to be copied from parents
-  mixingRatio: .7
+  mixingRatio: .8
 
   # @property [Array<Genome>] All the genomes of this population
   genomes: []
