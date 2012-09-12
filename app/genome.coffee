@@ -125,6 +125,7 @@ class Genome
   getRandomIndex: (array) ->
     Math.floor array.length * Math.random()
 
+# The distances for this TSP-situation
 distances = [
   [0, 5, 5, 6, 7, 2, 5, 2, 1, 5, 5, 1, 2, 7, 5]
   [5, 0, 5, 5, 5, 2, 5, 1, 5, 6, 6, 6, 6, 1, 7]

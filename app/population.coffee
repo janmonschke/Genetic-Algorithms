@@ -37,17 +37,24 @@ class Population
   rank: ->
     @genomes = _.sortBy @genomes, (genome) -> genome.cost()
 
+  # @return [Genome] the best Genome in this population
   best: ->
     _.first(@genomes)
 
+  # @return [Genome] the worst Genome in this population
   worst: ->
     _.last(@genomes)
 
+  # Selects a Genome by tournament selection. The amount of participants is defined by
+  # @tournamentParticipants.
+  # @return [Genome] the Genome which has won the tournamen selection
   tournamentSelect: ->
     participants = []
+    # select random participants
     for index in [0..@tournamentParticipants]
       randomIndex = Math.floor @genomes.length * Math.random()
       participants.push @genomes[randomIndex]
+    # rank participants
     participants = _.sortBy participants, (genome) -> genome.cost()
     participants[0]
 
