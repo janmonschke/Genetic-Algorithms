@@ -1,0 +1,1 @@
+window.population = new Population()

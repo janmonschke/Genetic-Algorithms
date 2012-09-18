@@ -1,5 +1,3 @@
-{Genome} = require 'genome'
-
 # Base class for ranking and creating populations
 class Population
 
@@ -98,4 +96,4 @@ class Population
     
     @rank()
 
-exports.Population = Population
+window.Population = Population

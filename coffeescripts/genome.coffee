@@ -144,4 +144,4 @@ distances = [
   [5, 7, 6, 5, 5, 5, 6, 2, 6, 2, 1, 5, 6, 5, 0]
 ]
 
-exports.Genome = Genome
+window.Genome = Genome

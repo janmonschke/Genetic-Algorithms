@@ -1,0 +1,45 @@
+!!!5
+html
+  head
+    title Genetic Algorithms - Travelling Salesman Problem (CoffeeScript)
+    script(type='text/javascript', src='javascripts/underscore-1.3.3.js')
+    script(type='text/javascript', src='javascripts/app.js')
+
+    link(rel='stylesheet', href='styles/base.css')
+    link(rel='stylesheet', href='styles/skeleton.css')
+    link(rel='stylesheet', href='styles/layout.css')
+  body
+
+    
+    .container
+
+      .sixteen.columns
+
+        h1(style='margin-top: 40px') Genetic Algorithm
+        h5 Solving the Traveling Salesman Problem with a Genetic algorithm in CoffeeScript
+        hr
+
+      .one-third.column
+        h3 Genetic Algorithm?
+        p This will be an introduction to Genetic algorithms with a link to some other pages
+
+      .one-third.column
+        h3 Parameters
+        p
+          label(for='population-size') Population Size
+          input(type='text', id='population-size', value='1000')
+
+        p
+          label(for='generation-size') Number of Generations
+          input(type='text', id='generation-size', value='1000')
+
+        p
+          input(type='submit', value='Start', id='start-button')
+          input(type='submit', value='Pause', id='pause-button')
+          input(type='submit', value='Stop', id='stop-button')
+
+
+      .one-third.column
+        h3 Output
+        ul#output-table
+          li Generation #100, Best: 34
