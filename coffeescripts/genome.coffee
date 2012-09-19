@@ -11,21 +11,6 @@ class Genome
   # If no values are given, it defaults to `@initial()`
   constructor: (@values = @initial()) ->
 
-  # Compares this genome to the given genome.
-  # Comparison is based on cost and therefore a lower cost is better.
-  # @param [Genome] genome The genome you want to compare to this one
-  # @return [Integer] Returns 1 if this one is better, -1 if the other one is better or 0 when they're the same
-  # when they have the same cost
-  compare: (genome) ->
-    costThis = @cost()
-    costThat = genome.cost()
-    if costThis is costThat
-      0
-    else if costThis < costThat
-      1
-    else
-      -1
-
   # Creates the initial set of values
   # @return [Array]
   initial: ->
@@ -43,6 +28,21 @@ class Genome
     # we are going to deal with zero based indexes
     values = _.map values, (num) -> --num
     values
+
+  # Compares this genome to the given genome.
+  # Comparison is based on cost and therefore a lower cost is better.
+  # @param [Genome] genome The genome you want to compare to this one
+  # @return [Integer] Returns 1 if this one is better, -1 if the other one is better or 0 when they're the same
+  # when they have the same cost
+  compare: (genome) ->
+    costThis = @cost()
+    costThat = genome.cost()
+    if costThis is costThat
+      0
+    else if costThis < costThat
+      1
+    else
+      -1
 
   # Mutate this genome by swapping two random variables
   mutate: ->

@@ -10,19 +10,6 @@
       this.values = values != null ? values : this.initial();
     }
 
-    Genome.prototype.compare = function(genome) {
-      var costThat, costThis;
-      costThis = this.cost();
-      costThat = genome.cost();
-      if (costThis === costThat) {
-        return 0;
-      } else if (costThis < costThat) {
-        return 1;
-      } else {
-        return -1;
-      }
-    };
-
     Genome.prototype.initial = function() {
       var length, possibleCities, randomIndex, values;
       possibleCities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
@@ -38,6 +25,19 @@
         return --num;
       });
       return values;
+    };
+
+    Genome.prototype.compare = function(genome) {
+      var costThat, costThis;
+      costThis = this.cost();
+      costThat = genome.cost();
+      if (costThis === costThat) {
+        return 0;
+      } else if (costThis < costThat) {
+        return 1;
+      } else {
+        return -1;
+      }
     };
 
     Genome.prototype.mutate = function() {
@@ -134,6 +134,8 @@
 
   Population = (function() {
 
+    Population.prototype.genomes = [];
+
     Population.prototype.mutationChance = .15;
 
     Population.prototype.crossoverRate = .45;
@@ -141,8 +143,6 @@
     Population.prototype.elitism = true;
 
     Population.prototype.mixingRatio = .8;
-
-    Population.prototype.genomes = [];
 
     Population.prototype.currentGeneration = 1;
 

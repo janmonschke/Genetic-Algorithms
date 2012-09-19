@@ -1,5 +1,7 @@
 # Base class for ranking and creating populations
 class Population
+  # @property [Array<Genome>] All the genomes of this population
+  genomes: []
 
   # @property [Float] The chance of a Genome to mutate
   mutationChance: .15
@@ -12,9 +14,6 @@ class Population
 
   # @property [Float] Determines the amount of values to be copied from parents
   mixingRatio: .8
-
-  # @property [Array<Genome>] All the genomes of this population
-  genomes: []
 
   # @property [Integer] The number of the current genereation
   currentGeneration: 1
