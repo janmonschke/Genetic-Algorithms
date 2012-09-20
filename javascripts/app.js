@@ -138,7 +138,7 @@
 
     Population.prototype.mutationChance = .15;
 
-    Population.prototype.crossoverRate = .45;
+    Population.prototype.simpleSelectRate = .45;
 
     Population.prototype.elitism = true;
 
@@ -198,18 +198,16 @@
         skip = 2;
       }
       for (index = _i = 0, _ref = this.genomes.length - skip; _i < _ref; index = _i += 2) {
-        a = this.genomes[index];
-        b = this.genomes[index + 1];
-        if (index / this.populationSize <= this.crossoverRate) {
-          children = a.crossover(b, this.mixingRatio);
-          a = children[0];
-          b = children[1];
+        if (index / this.populationSize <= this.simpleSelectRate) {
+          a = this.genomes[index];
+          b = this.genomes[index + 1];
         } else {
-          if (Math.random() < this.tournamentChance) {
-            a = this.tournamentSelect();
-            b = this.tournamentSelect();
-          }
+          a = this.tournamentSelect();
+          b = this.tournamentSelect();
         }
+        children = a.crossover(b, this.mixingRatio);
+        a = children[0];
+        b = children[1];
         if (Math.random() < this.mutationChance) {
           a.mutate();
         }

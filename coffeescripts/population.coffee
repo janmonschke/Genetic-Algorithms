@@ -6,8 +6,8 @@ class Population
   # @property [Float] The chance of a Genome to mutate
   mutationChance: .15
 
-  # @property [Float] The rate of genes being crossovered
-  crossoverRate: .45
+  # @property [Float] The rate of genes being selected by simple-selection
+  simpleSelectRate: .45
 
   # @property [Boolean] If true, the two best Genomes will survive without mutation or mating
   elitism: true
@@ -68,20 +68,20 @@ class Population
       skip = 2
 
     for index in [0...@genomes.length-skip] by 2
-      # simply select two solutions that are next to each other
-      a = @genomes[index]
-      b = @genomes[index + 1]
 
-      # perform a crossover if the maximum hasn't been reached
-      if index / @populationSize <= @crossoverRate
-        children = a.crossover b, @mixingRatio
-        a = children[0]
-        b = children[1]
+      # simply select two solutions that are next to each other
+      if index / @populationSize <= @simpleSelectRate
+        a = @genomes[index]
+        b = @genomes[index + 1]
       else
         # Perform a tournament selection to have some spread
-        if Math.random() < @tournamentChance
-          a = @tournamentSelect()
-          b = @tournamentSelect()
+        a = @tournamentSelect()
+        b = @tournamentSelect()
+
+      # perform a crossover if the maximum hasn't been reached
+      children = a.crossover b, @mixingRatio
+      a = children[0]
+      b = children[1]
 
       # mutate the genomes
       a.mutate() if Math.random() < @mutationChance
