@@ -16,30 +16,35 @@ paused = true
 results = null
 
 reset = ->
-  results = [['Generation', 'Best', 'Worst']]
+  resetButton.style.display = 'none'
+  pauseButton.style.display = 'none'
+  startButton.style.display = ''
+
+  paused = true
+
+  results = [['Generation', 'Best']]
   generationSize = Number document.getElementById('generation-size').value
   populationSize = Number document.getElementById('population-size').value
   
   window.population = new Population populationSize, generationSize
-  
-  outputList.innerHTML = ''
 
   window.population.afterGeneration = ->
     cg = window.population.currentGeneration
 
     if cg % 3 is 0 or cg is 1 or cg is 2
+      outputList.innerHTML = ''
       newLi = document.createElement('li')
       best = window.population.best().cost()
       worst = window.population.worst().cost()
       newLi.innerHTML = "Generation ##{window.population.currentGeneration}, best: #{best}, worst: #{worst}"
       outputList.appendChild newLi
-      results.push [cg, best, worst]
+      results.push [cg, best]
 
 startButton.addEventListener 'click', ->
   this.style.display = 'none'
   pauseButton.style.display = ''
   resetButton.style.display = ''
-
+  outputList.innerHTML = ''
   reset()
 
   paused = false
@@ -49,12 +54,6 @@ pauseButton.addEventListener 'click', ->
   paused = true
 
 resetButton.addEventListener 'click', ->
-  this.style.display = 'none'
-  pauseButton.style.display = 'none'
-  startButton.style.display = ''
-
-  paused = true
-  
   reset()
 
 drawResults = ->

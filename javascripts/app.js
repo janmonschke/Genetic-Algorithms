@@ -259,21 +259,25 @@
   results = null;
 
   reset = function() {
-    results = [['Generation', 'Best', 'Worst']];
+    resetButton.style.display = 'none';
+    pauseButton.style.display = 'none';
+    startButton.style.display = '';
+    paused = true;
+    results = [['Generation', 'Best']];
     generationSize = Number(document.getElementById('generation-size').value);
     populationSize = Number(document.getElementById('population-size').value);
     window.population = new Population(populationSize, generationSize);
-    outputList.innerHTML = '';
     return window.population.afterGeneration = function() {
       var best, cg, newLi, worst;
       cg = window.population.currentGeneration;
       if (cg % 3 === 0 || cg === 1 || cg === 2) {
+        outputList.innerHTML = '';
         newLi = document.createElement('li');
         best = window.population.best().cost();
         worst = window.population.worst().cost();
         newLi.innerHTML = "Generation #" + window.population.currentGeneration + ", best: " + best + ", worst: " + worst;
         outputList.appendChild(newLi);
-        return results.push([cg, best, worst]);
+        return results.push([cg, best]);
       }
     };
   };
@@ -282,6 +286,7 @@
     this.style.display = 'none';
     pauseButton.style.display = '';
     resetButton.style.display = '';
+    outputList.innerHTML = '';
     reset();
     paused = false;
     return next();
@@ -292,10 +297,6 @@
   });
 
   resetButton.addEventListener('click', function() {
-    this.style.display = 'none';
-    pauseButton.style.display = 'none';
-    startButton.style.display = '';
-    paused = true;
     return reset();
   });
 
