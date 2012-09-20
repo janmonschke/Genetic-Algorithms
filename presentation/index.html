@@ -295,6 +295,18 @@ Population.prototype.tournamentSelect = function() {
 
         <section>
           <h2>Crossover</h2>
+          <p>Not so sexy at all</p>
+          <img src="http://www.tc.bham.ac.uk/~roy/Images/crossover.gif" />
+        </section>
+
+        <section>
+          <h2>Crossover</h2>
+          <ol>
+            <li>Not so easy for the TSP</li>
+            <li class="fragment">Genomes can easily become invalid by slicing</li>
+            <li class="fragment">Needs extra validation</li>
+            <li class="fragment"><a href="http://lev4projdissertation.googlecode.com/svn/trunk/reading/aiRev99.pdf">There are papers on it</a></li>
+          </ol>
         </section>
 
         <section>
@@ -410,6 +422,16 @@ for (index = _i = 0, _ref = this.genomes.length - skip; _i < _ref; index = _i +=
         </pre></code>
         </section>
       </section>
+
+      <section>
+          <h2>When does it stop?</h2>
+          <p>Again, this highly depends on the problem</p>
+          <ol>
+            <li class="fragment">After a max number of generations</li>
+            <li class="fragment">When a certain goal has been reached</li>
+            <li class="fragment">When the best solution hasn't changed in x generations</li>
+          </ol>
+        </section>
 
         <section>
           <h1>Demo time</h1>
