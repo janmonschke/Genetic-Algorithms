@@ -301,17 +301,71 @@ Population.prototype.tournamentSelect = function() {
         </section>
 
         <section>
-          <h2>Elitism - like a sir</h2>
+          <h2>Elitism</h2>
           <p>The x best Genomes are directly transferred to the next generation.</p>
           <img src="http://i3.kym-cdn.com/entries/icons/original/000/006/550/feel-like-a-sir-template.jpg" />
         </section>
 
         <section>
+        <section>
           <h2>Next Generation Code</h2>
+          <pre><code contenteditable>
+for index in [0...@genomes.length-skip] by 2
+  # simply select two solutions that are next to each other
+  a = @genomes[index]
+  b = @genomes[index + 1]
+
+  # perform a crossover if the maximum hasn't been reached
+  if index / @populationSize <= @crossoverRate
+    children = a.crossover b, @mixingRatio
+    a = children[0]
+    b = children[1]
+  else
+    # Perform a tournament selection to have some spread
+    if Math.random() < @tournamentChance
+      a = @tournamentSelect()
+      b = @tournamentSelect()
+
+  # mutate the genomes
+  a.mutate() if Math.random() < @mutationChance
+  b.mutate() if Math.random() < @mutationChance
+        </pre></code>
         </section>
 
         <section>
-          <h2>Demo time</h2>
+          <h2>Next Generation Code</h2>
+          <pre><code contenteditable>
+for (index = _i = 0, _ref = this.genomes.length - skip; _i < _ref; index = _i += 2) {
+  a = this.genomes[index];
+  b = this.genomes[index + 1];
+  if (index / this.populationSize <= this.crossoverRate) {
+    children = a.crossover(b, this.mixingRatio);
+    a = children[0];
+    b = children[1];
+  } else {
+    if (Math.random() < this.tournamentChance) {
+      a = this.tournamentSelect();
+      b = this.tournamentSelect();
+    }
+  }
+  if (Math.random() < this.mutationChance) {
+    a.mutate();
+  }
+  if (Math.random() < this.mutationChance) {
+    b.mutate();
+  }
+  nextGeneration.push(a);
+  nextGeneration.push(b);
+}
+        </pre></code>
+        </section>
+      </section>
+
+        <section>
+          <h1>Demo time</h1>
+          
+          <a href="../index.html">Click me for a demo</a>
+          
         </section>
 
         <section>
