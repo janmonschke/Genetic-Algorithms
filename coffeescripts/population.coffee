@@ -16,13 +16,15 @@ class Population
   mixingRatio: .8
 
   # @property [Integer] The number of the current genereation
-  currentGeneration: 1
+  currentGeneration: 0
 
   # @property [Integer] The number of participants for the tournament selection
   tournamentParticipants: 3
 
   # @property [Float] The chance of having a tournament selection
   tournamentChance: .1
+
+  afterGeneration: ->
 
   # @param [Integer] populationSize The size of the population
   # @param [Integer] maxGenerationCount The maximum number of generations (iterations)
@@ -94,5 +96,7 @@ class Population
     @genomes = nextGeneration
     
     @rank()
+
+    @afterGeneration()
 
 window.Population = Population

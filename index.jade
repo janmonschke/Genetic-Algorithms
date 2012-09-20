@@ -7,6 +7,11 @@ html
     link(rel='stylesheet', href='styles/base.css')
     link(rel='stylesheet', href='styles/skeleton.css')
     link(rel='stylesheet', href='styles/layout.css')
+
+    script(type='text/javascript', src='https://www.google.com/jsapi')
+    script(type='text/javascript')
+      google.load("visualization", "1", {packages:["corechart"]})
+
   body
 
     
@@ -30,7 +35,7 @@ html
 
         p
           label(for='generation-size') Number of Generations
-          input(type='text', id='generation-size', value='1000')
+          input(type='text', id='generation-size', value='30')
 
         p
           input(type='submit', value='Start', id='start-button')
@@ -40,7 +45,9 @@ html
 
       .one-third.column
         h3 Output
-        ul#output-table
+        ul#output-list
           li Generation #100, Best: 34
+
+      #chart.two-third.column
 
   script(type='text/javascript', src='javascripts/app.js')

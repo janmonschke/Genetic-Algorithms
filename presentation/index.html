@@ -373,24 +373,28 @@ Genome.prototype.mutate = function() {
           <h2>Next Generation Code</h2>
           <pre><code contenteditable>
 for index in [0...@genomes.length-skip] by 2
-  # simply select two solutions that are next to each other
-  a = @genomes[index]
-  b = @genomes[index + 1]
 
-  # perform a crossover if the maximum hasn't been reached
-  if index / @populationSize <= @crossoverRate
-    children = a.crossover b, @mixingRatio
-    a = children[0]
-    b = children[1]
+  # simply select two solutions that are next to each other
+  if index / @populationSize <= @simpleSelectRate
+    a = @genomes[index]
+    b = @genomes[index + 1]
   else
     # Perform a tournament selection to have some spread
-    if Math.random() < @tournamentChance
-      a = @tournamentSelect()
-      b = @tournamentSelect()
+    a = @tournamentSelect()
+    b = @tournamentSelect()
+
+  # perform a crossover
+  children = a.crossover b, @mixingRatio
+  a = children[0]
+  b = children[1]
 
   # mutate the genomes
   a.mutate() if Math.random() < @mutationChance
   b.mutate() if Math.random() < @mutationChance
+
+  # add the new genomes to the next generation
+  nextGeneration.push a
+  nextGeneration.push b
         </pre></code>
         </section>
 
@@ -398,18 +402,16 @@ for index in [0...@genomes.length-skip] by 2
           <h2>Next Generation Code</h2>
           <pre><code contenteditable>
 for (index = _i = 0, _ref = this.genomes.length - skip; _i < _ref; index = _i += 2) {
-  a = this.genomes[index];
-  b = this.genomes[index + 1];
-  if (index / this.populationSize <= this.crossoverRate) {
-    children = a.crossover(b, this.mixingRatio);
-    a = children[0];
-    b = children[1];
+  if (index / this.populationSize <= this.simpleSelectRate) {
+    a = this.genomes[index];
+    b = this.genomes[index + 1];
   } else {
-    if (Math.random() < this.tournamentChance) {
-      a = this.tournamentSelect();
-      b = this.tournamentSelect();
-    }
+    a = this.tournamentSelect();
+    b = this.tournamentSelect();
   }
+  children = a.crossover(b, this.mixingRatio);
+  a = children[0];
+  b = children[1];
   if (Math.random() < this.mutationChance) {
     a.mutate();
   }

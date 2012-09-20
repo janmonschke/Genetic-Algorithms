@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/skeleton.css">
     <link rel="stylesheet" href="styles/layout.css">
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]})
+      
+    </script>
   </head>
   <body>
     <div class="container">
@@ -26,7 +31,7 @@
         </p>
         <p>
           <label for="generation-size">Number of Generations</label>
-          <input type="text" id="generation-size" value="1000">
+          <input type="text" id="generation-size" value="30">
         </p>
         <p>
           <input type="submit" value="Start" id="start-button">
@@ -36,10 +41,11 @@
       </div>
       <div class="one-third column">
         <h3>Output</h3>
-        <ul id="output-table">
+        <ul id="output-list">
           <li>Generation #100, Best: 34</li>
         </ul>
       </div>
+      <div id="chart" class="two-third column"></div>
     </div>
   </body>
   <script type="text/javascript" src="javascripts/app.js"></script>
