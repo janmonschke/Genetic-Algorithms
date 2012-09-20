@@ -299,6 +299,55 @@ Population.prototype.tournamentSelect = function() {
 
         <section>
           <h2>Mutation</h2>
+          <p>Needed to keep variety (we talked about it ;))</p>
+          <div class="fragment">
+            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Goldfish3.jpg/300px-Goldfish3.jpg" />
+            <hr />
+            <p>It turns this into...</p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Mutation</h2>
+          <p>...this...</p>
+          <img src="http://cubcarson.files.wordpress.com/2011/04/simpsons-fish.jpg?w=343" />
+        </section>
+
+        <section>
+          <h2>Mutation</h2>
+          <p>...by doing this:</p>
+          <code>[<span>1</span>,<span>3</span>,<span>2</span>,<span>0</span>]</code>
+          <div><code class="fragment">genome.mutate()</code></div>
+          <code class="fragment">[<span style="background-color: red;">2</span>,<span>3</span>,<span style="background-color: red;">1</span>,<span>0</span>]</code>
+        </section>
+
+        <section>
+          <section>
+            <h2>Le mutation code</h2>
+            <pre><code contenteditable>
+Class Genome
+  mutate: ->
+    indexA = @getRandomIndex @values
+    indexB = @getRandomIndex @values
+    buff = @values[indexA]
+    @values[indexA] = @values[indexB]
+    @values[indexB] = buff
+            </code></pre>
+
+          </section>
+          <section>
+            <pre><code contenteditable>
+Genome.prototype.mutate = function() {
+  var buff, indexA, indexB;
+  indexA = this.getRandomIndex(this.values);
+  indexB = this.getRandomIndex(this.values);
+  buff = this.values[indexA];
+  this.values[indexA] = this.values[indexB];
+  return this.values[indexB] = buff;
+};
+           </code></pre>
+
+          </section>
         </section>
 
         <section>
