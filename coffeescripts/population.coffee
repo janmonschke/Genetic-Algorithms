@@ -6,9 +6,6 @@ class Population
   # @property [Float] The chance of a Genome to mutate
   mutationChance: .15
 
-  # @property [Float] The rate of genes being selected by simple-selection
-  simpleSelectRate: .45
-
   # @property [Boolean] If true, the two best Genomes will survive without mutation or mating
   elitism: true
 
@@ -19,7 +16,7 @@ class Population
   currentGeneration: 0
 
   # @property [Integer] The number of participants for the tournament selection
-  tournamentParticipants: 3
+  tournamentParticipants: 4
 
   # @property [Float] The chance of having a tournament selection
   tournamentChance: .1
@@ -70,15 +67,9 @@ class Population
       skip = 2
 
     for index in [0...@genomes.length-skip] by 2
-
-      # simply select two solutions that are next to each other
-      if index / @populationSize <= @simpleSelectRate
-        a = @genomes[index]
-        b = @genomes[index + 1]
-      else
-        # Perform a tournament selection to have some spread
-        a = @tournamentSelect()
-        b = @tournamentSelect()
+      # do a tournament selection
+      a = @tournamentSelect()
+      b = @tournamentSelect()
 
       # perform a crossover if the maximum hasn't been reached
       children = a.crossover b, @mixingRatio

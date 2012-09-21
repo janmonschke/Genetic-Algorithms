@@ -138,15 +138,13 @@
 
     Population.prototype.mutationChance = .15;
 
-    Population.prototype.simpleSelectRate = .45;
-
     Population.prototype.elitism = true;
 
     Population.prototype.mixingRatio = .8;
 
     Population.prototype.currentGeneration = 0;
 
-    Population.prototype.tournamentParticipants = 3;
+    Population.prototype.tournamentParticipants = 4;
 
     Population.prototype.tournamentChance = .1;
 
@@ -200,13 +198,8 @@
         skip = 2;
       }
       for (index = _i = 0, _ref = this.genomes.length - skip; _i < _ref; index = _i += 2) {
-        if (index / this.populationSize <= this.simpleSelectRate) {
-          a = this.genomes[index];
-          b = this.genomes[index + 1];
-        } else {
-          a = this.tournamentSelect();
-          b = this.tournamentSelect();
-        }
+        a = this.tournamentSelect();
+        b = this.tournamentSelect();
         children = a.crossover(b, this.mixingRatio);
         a = children[0];
         b = children[1];
@@ -270,7 +263,7 @@
     return window.population.afterGeneration = function() {
       var best, cg, newLi, worst;
       cg = window.population.currentGeneration;
-      if (cg % 3 === 0 || cg === 1 || cg === 2) {
+      if (cg % 3 === 0 || cg === 1 || cg === 2 || window.population.currentGeneration === generationSize) {
         outputList.innerHTML = '';
         newLi = document.createElement('li');
         best = window.population.best().cost();
@@ -312,8 +305,8 @@
 
   next = function() {
     if (window.population.currentGeneration === generationSize) {
-      drawResults();
       paused = true;
+      drawResults();
       reset();
     }
     if (!paused && !(window.population.currentGeneration >= generationSize)) {

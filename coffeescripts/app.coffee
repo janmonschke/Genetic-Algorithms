@@ -31,7 +31,7 @@ reset = ->
   window.population.afterGeneration = ->
     cg = window.population.currentGeneration
 
-    if cg % 3 is 0 or cg is 1 or cg is 2
+    if cg % 3 is 0 or cg is 1 or cg is 2 or window.population.currentGeneration == generationSize
       outputList.innerHTML = ''
       newLi = document.createElement('li')
       best = window.population.best().cost()
@@ -66,8 +66,8 @@ drawResults = ->
 
 next = ->
   if window.population.currentGeneration == generationSize
-    drawResults()
     paused = true
+    drawResults()
     reset()
   if !paused and not (window.population.currentGeneration >= generationSize)
     window.population.nextGeneration()

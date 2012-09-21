@@ -33,6 +33,7 @@
 	<body>
 		
 		<div class="reveal">
+      <small id="source-info" style="position: fixed; top: 0; right: 0;"></small>
 
 			<!-- Used to fade in a background when a specific slide state is reached -->
 			<div class="state-background"></div>
@@ -66,7 +67,7 @@
 				</section>
 				<section>
 					<p>
-						<img src="images/dogdoc.gif" style="width: 400px"/>
+						<img src="images/dogdoc.gif" alt="http://forgif.me/system/image/1866/image.gif" style="width: 400px"/>
 					</p>
 					<h4>How biologists see it</h4>
 
@@ -91,7 +92,7 @@
 				<section>
 					<h2>In other words</h2>
 					<p>
-						<a href="http://xkcd.com/399/"><img src="http://imgs.xkcd.com/comics/travelling_salesman_problem.png" /></a>
+						<a href="http://xkcd.com/399/"><img src="images/xkcd_travelling_salesman_problem.png" alt="http://imgs.xkcd.com/comics/travelling_salesman_problem.png" /></a>
 					</p>
 				</section>
 
@@ -227,7 +228,7 @@ Population.prototype.rank = function() {
 
         <section>
           <h2>A tale about birds and bees</h2>
-          <img src="http://static.fjcdn.com/pictures/Birds+and+Bees_028d03_3949321.jpg" class="fragment" />
+          <img src="images/how_computers_are_made.jpeg" alt="http://static.fjcdn.com/pictures/Birds+and+Bees_028d03_3949321.jpg" class="fragment" />
         </section>
 
         <section>
@@ -255,7 +256,7 @@ Population.prototype.rank = function() {
 
         <section>
           <p>It is important to keep variety in the population or otherwise we may not find the optimal solution. (aka a local maximum)</p>
-          <img src="http://betterceo.com/wp-content/uploads/2011/09/Local-Maximum0021.png" class="fragment" />
+          <img src="images/local_maximum.png" alt="http://betterceo.com/wp-content/uploads/2011/09/Local-Maximum0021.png" class="fragment" />
         </section>
 
         <section>
@@ -297,7 +298,7 @@ Population.prototype.tournamentSelect = function() {
         <section>
           <h2>Crossover</h2>
           <p>Not so sexy at all</p>
-          <img src="http://www.tc.bham.ac.uk/~roy/Images/crossover.gif" />
+          <img src="images/crossover.gif" alt="http://www.tc.bham.ac.uk/~roy/Images/crossover.gif" />
         </section>
 
         <section>
@@ -314,7 +315,7 @@ Population.prototype.tournamentSelect = function() {
           <h2>Mutation</h2>
           <p>Needed to keep variety (we talked about it ;))</p>
           <div class="fragment">
-            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Goldfish3.jpg/300px-Goldfish3.jpg" />
+            <img src="images/goldfish.jpeg" alt="http://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Goldfish3.jpg/300px-Goldfish3.jpg" />
             <hr />
             <p>It turns this into...</p>
           </div>
@@ -323,7 +324,7 @@ Population.prototype.tournamentSelect = function() {
         <section>
           <h2>Mutation</h2>
           <p>...this...</p>
-          <img src="http://cubcarson.files.wordpress.com/2011/04/simpsons-fish.jpg?w=343" />
+          <img src="images/blinky.jpeg" alt="http://cubcarson.files.wordpress.com/2011/04/simpsons-fish.jpg?w=343" />
         </section>
 
         <section>
@@ -366,7 +367,7 @@ Genome.prototype.mutate = function() {
         <section>
           <h2>Elitism</h2>
           <p>The x best Genomes are directly transferred to the next generation.</p>
-          <img src="http://i3.kym-cdn.com/entries/icons/original/000/006/550/feel-like-a-sir-template.jpg" />
+          <img src="images/like_a_sir.jpeg" alt="http://i3.kym-cdn.com/entries/icons/original/000/006/550/feel-like-a-sir-template.jpg" />
         </section>
 
         <section>
@@ -374,15 +375,9 @@ Genome.prototype.mutate = function() {
           <h2>Next Generation Code</h2>
           <pre><code contenteditable>
 for index in [0...@genomes.length-skip] by 2
-
-  # simply select two solutions that are next to each other
-  if index / @populationSize <= @simpleSelectRate
-    a = @genomes[index]
-    b = @genomes[index + 1]
-  else
-    # Perform a tournament selection to have some spread
-    a = @tournamentSelect()
-    b = @tournamentSelect()
+  # Perform a tournament selection
+  a = @tournamentSelect()
+  b = @tournamentSelect()
 
   # perform a crossover
   children = a.crossover b, @mixingRatio
@@ -403,13 +398,9 @@ for index in [0...@genomes.length-skip] by 2
           <h2>Next Generation Code</h2>
           <pre><code contenteditable>
 for (index = _i = 0, _ref = this.genomes.length - skip; _i < _ref; index = _i += 2) {
-  if (index / this.populationSize <= this.simpleSelectRate) {
-    a = this.genomes[index];
-    b = this.genomes[index + 1];
-  } else {
-    a = this.tournamentSelect();
-    b = this.tournamentSelect();
-  }
+  a = this.tournamentSelect();
+  b = this.tournamentSelect();
+
   children = a.crossover(b, this.mixingRatio);
   a = children[0];
   b = children[1];
@@ -447,15 +438,23 @@ for (index = _i = 0, _ref = this.genomes.length - skip; _i < _ref; index = _i +=
           <h2>What is it useful for?</h2>
           <ul>
             <li>Finding the optimal mix of parameters for an algorithm</li>
-            <li><a href="http://www.jorislaarman.com/bone-furniture.html">Find the most efficient structure to support a sitting person</a></li>
+            <li><a href="http://www.jorislaarman.com/bone-furniture.html">Find the most efficient structure for a chair</a></li>
             <li>Timetabling / Scheduling</li>
           </ul>
         </section>
 
         <section>
           <h2>thanks</h2>
-          <img src="http://picsfunnypics.com/images/funny13.jpg" />
+          <img src="images/darwinism.jpeg" alt="http://picsfunnypics.com/images/funny13.jpg" />
           <p>Questions?</p>
+        </section>
+
+        <section>
+          <h2>Further Links</h2>
+          <ul>
+            <li><a href="http://burakkanber.com/blog/machine-learning-genetic-algorithms-part-1-javascript/">Machine Learning: Genetic Algorithms Part 1 (JS)</a></li>
+            <li><a href="http://burakkanber.com/blog/machine-learning-genetic-algorithms-in-javascript-part-2/">Machine Learning: Genetic Algorithms Part 2 (JS)</a></li>
+          </ul>
         </section>
 
 			</div>
@@ -498,6 +497,19 @@ for (index = _i = 0, _ref = this.genomes.length - skip; _i < _ref; index = _i +=
 					{ src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
 				]
 			});
+      
+      var sourceInfo = document.getElementById('source-info');
+
+      var imgs = document.getElementsByTagName('img');
+      for (var i = imgs.length - 1; i >= 0; i--) {
+        var current = imgs[i];
+        current.addEventListener('mouseover', function(ev){
+          sourceInfo.innerHTML = 'source: ' + this.getAttribute('alt');;
+        });
+        current.addEventListener('mouseout', function(){
+          sourceInfo.innerHTML = '';
+        });
+      };
 			
 		</script>
 
