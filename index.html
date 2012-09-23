@@ -17,15 +17,18 @@
       <div class="sixteen columns">
         <h1 style="margin-top: 40px">Genetic Algorithm</h1>
         <h5>
-          Solving the Traveling Salesman Problem with a Genetic algorithm in CoffeeScript 
-          [<a href="presentation/">slides</a>] 
+          Solving the Travelling Salesman Problem with a Genetic Algorithm in CoffeeScript 
+          [<a href="presentation/index.html">slides</a>] 
           [<a href="https://github.com/janmonschke/Genetic-Algorithms/">code</a>]
         </h5>
         <hr>
       </div>
       <div class="one-third column">
-        <h3>Genetic Algorithm?</h3>
-        <p>This will be an introduction to Genetic algorithms with a link to some other pages</p>
+        <h3>Genetic Algorithm and TSP</h3>
+        <p>Since the <a href="http://en.wikipedia.org/wiki/Travelling_salesman_problem">Travelling Salesman problem</a> is a NP-hard problem, it's a good example on how to use a GA. When you're unfamiliar with GAs I recommend checking out my <a href="presentation/index.html">talk on GAs</a>.</p>
+        <p>In this case there are 15 cities and their distances are hard-coded in an <a href="https://github.com/janmonschke/Genetic-Algorithms/blob/gh-pages/coffeescripts/genome.coffee#L129">array in the code</a>.</p>
+        <p>You can change the population's size and the number of generations in the form to the right. After the maximum number of generations is reached, you will see a performance chart of the current run.</p>
+        <p> </p>
       </div>
       <div class="one-third column">
         <h3>Parameters</h3>
@@ -51,4 +54,15 @@
     </div>
   </body>
   <script type="text/javascript" src="javascripts/app.js"></script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-19046336-4']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </html>

@@ -109,7 +109,7 @@
       <table class='box'>
         <tr>
           <td>Defined in:</td>
-          <td>app/population.coffee</td>
+          <td>coffeescripts/population.coffee</td>
         </tr>
       </table>
       <h2>Overview</h2>
@@ -120,6 +120,14 @@
 </div>
       <h2>Property Summary</h2>
       <dl class='properties'>
+        <dt id='genomes-property'>
+          <span class='signature'>
+            (Array&lt;Genome&gt;) <strong>genomes</strong>
+          </span>
+        </dt>
+        <dd class='desc'>
+          <p>All the genomes of this population</p>
+        </dd>
         <dt id='mutationChance-property'>
           <span class='signature'>
             (Float) <strong>mutationChance</strong>
@@ -127,14 +135,6 @@
         </dt>
         <dd class='desc'>
           <p>The chance of a Genome to mutate</p>
-        </dd>
-        <dt id='crossoverRate-property'>
-          <span class='signature'>
-            (Float) <strong>crossoverRate</strong>
-          </span>
-        </dt>
-        <dd class='desc'>
-          <p>The rate of genes being crossovered</p>
         </dd>
         <dt id='elitism-property'>
           <span class='signature'>
@@ -151,14 +151,6 @@
         </dt>
         <dd class='desc'>
           <p>Determines the amount of values to be copied from parents</p>
-        </dd>
-        <dt id='genomes-property'>
-          <span class='signature'>
-            (Array&lt;Genome&gt;) <strong>genomes</strong>
-          </span>
-        </dt>
-        <dd class='desc'>
-          <p>All the genomes of this population</p>
         </dd>
         <dt id='currentGeneration-property'>
           <span class='signature'>
@@ -187,6 +179,16 @@
       </dl>
       <h2>Instance Method Summary</h2>
       <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#afterGeneration-instance'>
+        - (void) <strong>afterGeneration</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
   <li>
     <span class='signature'>
       <a href='#constructor-instance'>
@@ -281,6 +283,13 @@
       <h2>Instance Method Details</h2>
       <div class='methods'>
   <div class='method_details'>
+    <p class='signature' id='afterGeneration-instance'>
+      - (void) <strong>afterGeneration</strong>()
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
     <p class='signature' id='rank-instance'>
       - (void) <strong>rank</strong>()
     </p>
@@ -355,11 +364,11 @@
     </div>
     <div id='footer'>
   Generated on
-  Wed Sep 12 2012 11:55:51 GMT+0200 (CEST)
+  Sat Sep 22 2012 01:48:55 GMT+0200 (CEST)
   by
   <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
   v1.4.1
-  (Node.js v0.6.19).
+  (Node.js v0.8.1).
   &#10034;
   Press Ctrl-h to see the keyboard shortcuts
   &#10034;
