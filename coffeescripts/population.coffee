@@ -12,7 +12,7 @@ class Population
   # @property [Float] Determines the amount of values to be copied from parents
   mixingRatio: .8
 
-  # @property [Integer] The number of the current genereation
+  # @property [Integer] The number of the current generation
   currentGeneration: 0
 
   # @property [Integer] The number of participants for the tournament selection
